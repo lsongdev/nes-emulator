@@ -1,0 +1,32 @@
+import { uint8 } from '../api/types.js';
+import { IChannel } from '../api/apu.js';
+export declare class Pulse implements IChannel {
+    private readonly channel;
+    volume: number;
+    lengthCounter: number;
+    private duty;
+    private isEnvelopeLoop;
+    private isConstantVolume;
+    private envelopeValue;
+    private envelopeVolume;
+    private envelopeCounter;
+    private isSweepEnabled;
+    private sweepPeriod;
+    private isSweepNegated;
+    private sweepShift;
+    private sweepCounter;
+    private timer;
+    private internalTimer;
+    private counter;
+    private enable;
+    constructor(channel: number);
+    get isEnabled(): boolean;
+    set isEnabled(isEnabled: boolean);
+    clock(): void;
+    processEnvelope(): void;
+    processLinearCounter(): void;
+    processLengthCounter(): void;
+    processSweep(): void;
+    write(offset: uint8, data: uint8): void;
+    private step;
+}
